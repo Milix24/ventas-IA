@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Vendara</title>
+
+<style>
+body {margin:0;font-family:Segoe UI;background:#f1f5f9;}
+.sidebar {width:220px;height:100vh;background:#0f172a;color:white;position:fixed;padding:20px;}
+.sidebar h2 {color:#22c55e;}
+.sidebar a {display:block;color:white;margin:10px 0;text-decoration:none;}
+
+.main {margin-left:240px;padding:30px;}
+
+table {width:100%;background:white;border-radius:10px;padding:10px;}
+td, th {padding:10px;text-align:left;}
+
+.btn {padding:6px 10px;border-radius:6px;text-decoration:none;color:white;}
+.nuevo {background:#3b82f6;}
+.contactado {background:#f59e0b;}
+.interesado {background:#22c55e;}
+.delete {background:#ef4444;}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>🚀 Vendara</h2>
+<a href="/">Dashboard</a>
+<a href="/nuevo">Nuevo Lead</a>
+<a href="/inteligencia">Inteligencia</a>
+</div>
+
+<div class="main">
+
+<h1>📊 Panel de Ventas</h1>
+
+<a class="btn nuevo" href="/nuevo">+ Crear Lead</a>
+
+<table>
+<tr>
+<th>Nombre</th>
+<th>Estado</th>
+<th>Acciones</th>
+</tr>
+
+{% for lead in leads %}
+<tr>
+<td>{{ lead.nombre }}</td>
+<td>{{ lead.estado }}</td>
+<td>
+<a class="btn interesado" href="/estado/{{lead.id}}/interesado">Interesado</a>
+<a class="btn contactado" href="/estado/{{lead.id}}/contactado">Contactado</a>
+<a class="btn nuevo" href="/estado/{{lead.id}}/nuevo">Nuevo</a>
+<a class="btn delete" href="/eliminar/{{lead.id}}">Eliminar</a>
+<a class="btn" style="background:black;" href="/editar/{{lead.id}}">Editar</a>
+<a class="btn" style="background:#25D366;" href="/abrir/{{lead.id}}">WhatsApp</a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
